@@ -27,7 +27,7 @@ module.exports.updateStudent = async (req, res, next) => {
     const student_data = await mongo.selectedDb
       .collection("student")
       .find({ name })
-      .toArray();
+      
     const mentor_data = student_data[0].mentorAssigned;
     await mongo.selectedDb
       .collection("student")
@@ -63,7 +63,7 @@ module.exports.getStudent = async (req, res, next) => {
     const findData = await mongo.selectedDb
       .collection("student")
       .find({ mentorAssigned: name })
-      .toArray();
+      
     res.status(200).json({ message: `student who were assigned to ${name}` });
     res.send(findData);
   } catch (err) {

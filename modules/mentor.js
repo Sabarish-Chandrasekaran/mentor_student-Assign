@@ -6,7 +6,7 @@ module.exports.createMentor = async (req, res, next) => {
     await mongo.selectedDb
       .collection("mentor")
       .insertOne(req.body.mentor)
-      .toArray();
+      
     res.status(200).send({
       message: `mentor data created`,
     });
@@ -23,12 +23,12 @@ module.exports.updateMentor = async (req, res, next) => {
     let student_list = await mongo.selectedDb
       .collection("studentList")
       .find()
-      .toArray();
+      
     student_list[0].nameList.forEach(async (obj) => {
       let student_data = await mongo.selectedDb
         .collection("student")
         .find({ name: obj })
-        .toArray();
+        
       if (!student_data[0].mentorAssigned) {
         await mongo.selectedDb
           .collection("student")
